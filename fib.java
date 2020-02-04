@@ -16,10 +16,12 @@ public class fib {
 
              if (userValue >= 0){
 
-             String fibValues = outputFib(userValue);
+             String fibValues ="" +  outputFib(userValue);// мне кажется, так нельзя делать, но все же
 
              recordInputDate(myDate, userValue, fibValues);
+
              } else {
+
                  System.out.println("Input natural number!");
 
              }
@@ -38,42 +40,32 @@ public class fib {
 
          }
 
-        public static String outputFib(int userValue) {
+         public static int outputFib(int userValue) {
 
-            int num1 = 1;
-            int num2 = 1;
-
-            String values = 0 + " " + num1 + " " +num2;
-
-            for (int i = 4; i <= userValue; i++) {
-
-                int num3 = num1 + num2;
-
-                num1 = num2;
-                num2 = num3;
-
-                values = values + " " + num3;
+            if (userValue >= 0 & userValue <= 1){
+                return userValue;
             }
-            return values;
 
-    }
-
-    public static void recordInputDate(File myDate, int userValue, String fibValues) throws IOException {
-
-        FileWriter writer = new FileWriter(myDate);
-
-        writer.write("User value: " + userValue + "\nOutput values: " +  fibValues );
-        writer.flush();
-        writer.close();
-
-        if (myDate.length() != 0) {
-
-            System.out.println("Success!");
-
-        } else {
-
-            System.out.println("Something went wrong!");
+            return outputFib(userValue - 1) + outputFib(userValue - 2);
 
         }
-    }
+
+        public static void recordInputDate(File myDate, int userValue, String fibValues) throws IOException {
+
+            FileWriter writer = new FileWriter(myDate);
+
+            writer.write("User value: " + userValue + "\nOutput value: " +  fibValues );
+            writer.flush();
+            writer.close();
+
+            if (myDate.length() != 0) {
+
+                System.out.println("Success!");
+
+            } else {
+
+                System.out.println("Something went wrong!");
+
+            }
+        }
 }
